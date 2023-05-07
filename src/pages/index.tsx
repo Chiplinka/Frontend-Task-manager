@@ -1,3 +1,10 @@
+import React, { useRef } from 'react'
+import AccountManagment from '@/components/authorization';
+
 export default function Home() {
-  return <h1>Home page</h1>
+  return (
+    <>
+      <AccountManagment></AccountManagment>
+    </>
+  )
 }
