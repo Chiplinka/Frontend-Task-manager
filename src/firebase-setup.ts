@@ -1,25 +1,21 @@
-import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// import * as dotenv from 'dotenv'
-// dotenv.config()
-
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyA5r1E5-bdGvouAy3LwVtBWDYJlIzqpSrY',
-  authDomain: 'fwd-project-4bcda.firebaseapp.com',
-  projectId: 'fwd-project-4bcda',
-  storageBucket: 'fwd-project-4bcda.appspot.com',
-  messagingSenderId: '547799342077',
-  appId: '1:547799342077:web:6f73545c7fd9c5c8b7d794',
-}
+  apiKey: "AIzaSyBSnEneYonBMdjvnK6uD8kWtTdIxv8Ap94",
+  authDomain: "frontend-task-manager.firebaseapp.com",
+  projectId: "frontend-task-manager",
+  storageBucket: "frontend-task-manager.appspot.com",
+  messagingSenderId: "278291951914",
+  appId: "1:278291951914:web:b6a990ae577bba711cee53",
+  measurementId: "G-F65QHMX0Y5"
+};
 
-// console.log(process.env)
-
-// const firebaseConfig = {
-//   apiKey: process.env
-// }
-
-const app = initializeApp(firebaseConfig)
-const db = getFirestore()
-
-export { app, db }
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
