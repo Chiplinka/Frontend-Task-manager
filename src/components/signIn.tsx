@@ -1,23 +1,29 @@
 import { useState } from 'react'
-import {signIn} from '@/utils/firebase-setup'
+import {signIn, db} from '@/utils/firebase-setup'
+import { collection, doc, getDocs, setDoc } from 'firebase/firestore'
 
 const SignIn = () => {
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
-  async function handleSubmit(e: any) {
-    //don't forget to remove "any"  🤡  🤡  🤡
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    console.log('Button clicked with ' + email + ' ' + password)
-    //try to understand how firebase is working
-
+    setEmail('')
+    setPassword('')
     const res = await signIn(email, password)
-
-    console.log('Res = ' + res.toString)
+    if (typeof res !== 'boolean' && res?.error) {
+      setError(res.error.toString().slice(10))
+    } else {
+      // await router.replace('/languages')
+      setError("You are logged in")
+    }
   }
 
   return (
     <>
+      <div>{error}</div>
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
       <div className="m-3">

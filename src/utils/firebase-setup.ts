@@ -13,8 +13,8 @@ import {
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig)
-const db = getFirestore()
-const auth = getAuth(app)
+export const db = getFirestore()
+export const auth = getAuth(app)
 
 export const signUp = async (email: string, password: string) => {
   try {

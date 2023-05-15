@@ -2,6 +2,7 @@
 import { useState } from "react";
 import SignUp from "./signUp";
 import SignIn from "./signIn";
+import Logout from "./logout";
 
 const AccountManagment = () => {
   const [isToSignUp, setModeSignUp] = useState(false);
@@ -19,6 +20,7 @@ const AccountManagment = () => {
               <SignIn />
             </div>
           )}
+          <Logout />
         </div>
         <div className="justify-content mx-auto gap-16 md:flex">
           <button onClick={() => setModeSignUp(true)} className="">
