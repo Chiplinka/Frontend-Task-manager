@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {signIn, db} from '@/utils/firebase-setup'
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore'
 
-const SignIn = () => {
+const SignIn = ({ setIsAuthenticated }: any) => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,6 +18,7 @@ const SignIn = () => {
     } else {
       // await router.replace('/languages')
       setError("You are logged in")
+      setIsAuthenticated(true)
     }
   }
 

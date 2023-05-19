@@ -1,10 +1,11 @@
 import Link from "next/link";
+import ButtonLogOut from "@/components/logout"
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated, setIsAuthenticated }: any) => {
   return (
     <nav className="bg-gray-400">
       <div className="">
-        <ul className="flex items-center justify-between font-bold">
+        <ul className="flex items-center justify-around font-bold">
           <li>
             <Link href={"/"}>Home</Link>
           </li>
@@ -13,6 +14,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link href={"/about"}>About</Link>
+          </li>
+          <li>
+            <ButtonLogOut/>
           </li>
         </ul>
       </div>

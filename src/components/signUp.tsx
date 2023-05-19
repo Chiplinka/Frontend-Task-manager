@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import ticketIF from "../utils/ticketIF";
 
-const SignUp = () => {
+const SignUp = ({ setIsAuthenticated }: any) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +47,7 @@ const SignUp = () => {
     } else {
       const uid = auth.currentUser?.uid;
       if (uid) {
+        setIsAuthenticated(true);
         console.log(uid);
         setError("You are sign up");
         const currentDate = new Date();

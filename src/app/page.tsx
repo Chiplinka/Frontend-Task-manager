@@ -1,17 +1,30 @@
+"use client";
+import { use, useState, useEffect } from "react";
 import AccountManagment from "../components/authorization";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import { auth } from "@/utils/firebase-setup";
 
-export default function Page() {
+export default function Page({ isAuthenticated, setIsAuthenticated }: any) {
   // const router = useRouter()
 
   // if (router.basePath === '/') {
-  //   return 
+  //   return
   // }
 
+  useEffect(() => {
+    const uid = auth.currentUser?.uid;
+    if (uid) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
   return (
     <>
-      <h1>Hello, Next.js!</h1>
-      <AccountManagment></AccountManagment>
+      <AccountManagment
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
+      ></AccountManagment>
     </>
   );
 }

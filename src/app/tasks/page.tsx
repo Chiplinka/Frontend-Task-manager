@@ -2,16 +2,21 @@
 import { signUp, db, auth } from "@/utils/firebase-setup";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import queryIF from "@/utils/queryIF";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function TaskApp() {
   const [ticketsList, setTickets] = useState<queryIF>();
 
-  async function getTasks(e: any) {
-    e.preventDefault();
+  useEffect(() => {
+    getTasks()
+  }, []);
+
+  async function getTasks() {
+    // e.preventDefault();
     console.log("Handle");
     const uid = auth.currentUser?.uid;
     if (uid) {
+      console.log("You are logged in");
       console.log("Read data");
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
@@ -28,22 +33,22 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>TaskApp</h1>
-      <form onSubmit={getTasks}>
+      {/* <form onSubmit={getTasks}>
         <button type="submit">getTasks</button>
-      </form>
-      <div>
-        <h1>My Tickets</h1>
-        <ul>
+      </form> */}
+      <h1>My Tickets</h1>
+
+      <div className="flex border border-gray-300 justify-around">
           {ticketsList?.tickets.map((ticket, index) => (
-            <li key={index}>
-              <strong>Name:</strong> {ticket.name} | <strong>Status:</strong>{" "}
-              {ticket.status ? "Completed" : "Pending"} |{" "}
-              <strong>Creation Date:</strong> {ticket.creationDate} |{" "}
+            <div className="border border-gray-300" key={index}>
+              <strong>Name:</strong> {ticket.name} <br></br>{" "}
+              <strong>Status:</strong> {ticket.status ? "Completed" : "Pending"}
+              <br></br>
+              <strong>Creation Date:</strong> {ticket.creationDate}
+              <br></br>
               <strong>Due Date:</strong> {ticket.dueDate}
-            </li>
+            </div>
           ))}
-        </ul>
       </div>
     </>
   );
