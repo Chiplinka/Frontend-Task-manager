@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ButtonLogOut from "@/components/logout"
+import ButtonLogOut from "@/components/logout";
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }: any) => {
   return (
@@ -15,9 +15,9 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }: any) => {
           <li>
             <Link href={"/about"}>About</Link>
           </li>
-          <li>
+          {/* <li>
             <ButtonLogOut/>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

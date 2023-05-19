@@ -4,12 +4,13 @@ import AccountManagment from "../components/authorization";
 import { useRouter } from "next/router";
 import { auth } from "@/utils/firebase-setup";
 
-export default function Page({ isAuthenticated, setIsAuthenticated }: any) {
+export default function Page() {
   // const router = useRouter()
 
   // if (router.basePath === '/') {
   //   return
   // }
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const uid = auth.currentUser?.uid;
@@ -19,6 +20,7 @@ export default function Page({ isAuthenticated, setIsAuthenticated }: any) {
       setIsAuthenticated(false);
     }
   }, []);
+  
   return (
     <>
       <AccountManagment

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { signUp, db, auth } from "@/utils/firebase-setup";
 import { useRouter } from "next/router";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, setDoc } from "firebase/firestore";
 import ticketIF from "../utils/ticketIF";
+import formatDate from "../utils/formatDate";
 
 const SignUp = ({ setIsAuthenticated }: any) => {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ const SignUp = ({ setIsAuthenticated }: any) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const ticket1: ticketIF = {
+  let ticket: ticketIF = {
     name: "Do frontend project",
     status: false,
     creationDate: "",
@@ -22,17 +23,6 @@ const SignUp = ({ setIsAuthenticated }: any) => {
     creationDate: "",
     dueDate: "",
   };
-
-  // const router = useRouter();
-  function formatDate(date: Date) {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const year = String(date.getFullYear()).slice(-2);
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
-  }
 
   async function handleSubmit(e: any) {
     e.preventDefault();
@@ -48,20 +38,30 @@ const SignUp = ({ setIsAuthenticated }: any) => {
       const uid = auth.currentUser?.uid;
       if (uid) {
         setIsAuthenticated(true);
+
+        await setDoc(doc(db, "users", uid), {
+          email: email,
+          password: password,
+        });
+
         console.log(uid);
         setError("You are sign up");
         const currentDate = new Date();
         const futureDate = new Date();
         futureDate.setDate(currentDate.getDate() + 2);
+
+        ticket.creationDate = formatDate(currentDate);
+        ticket.dueDate = formatDate(futureDate);
+
+        addDoc(collection(db, `users/${uid}/tickets`), {
+          ticket,
+        });
+
         ticket2.creationDate = formatDate(currentDate);
         ticket2.dueDate = formatDate(futureDate);
-
-        ticket1.creationDate = formatDate(currentDate);
-        ticket1.dueDate = formatDate(futureDate);
-        await setDoc(doc(db, "users", uid), {
-          email: email,
-          password: password,
-          tickets: [ticket1, ticket2],
+        ticket = ticket2;
+        addDoc(collection(db, `users/${uid}/tickets`), {
+          ticket,
         });
       }
     }

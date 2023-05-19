@@ -10,7 +10,36 @@ const AccountManagment = ({ isAuthenticated, setIsAuthenticated }: any) => {
 
   return (
     <>
-      <div className="bg-gray-300 flex justify-center">
+      <div className="flex justify-center items-center h-screen">
+        <div className="bg-gray-200 p-8 rounded-lg">
+          {isAuthenticated ? (
+            <Logout
+              isAuthenticated={isAuthenticated}
+              setIsAuthenticated={setIsAuthenticated}
+            />
+          ) : (
+            <div className="">
+              {isToSignUp ? (
+                <div>
+                  <SignUp setIsAuthenticated={setIsAuthenticated} />
+                </div>
+              ) : (
+                <div>
+                  <SignIn setIsAuthenticated={setIsAuthenticated} />
+                </div>
+              )}
+              <button onClick={() => setModeSignUp(true)} className="">
+                Sign up
+              </button>
+              <button onClick={() => setModeSignUp(false)} className="">
+                Sign in
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* <div className="bg-gray-300 flex justify-center">
         {isAuthenticated ? (
           <Logout isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
@@ -34,7 +63,7 @@ const AccountManagment = ({ isAuthenticated, setIsAuthenticated }: any) => {
             </button>
           </div>
         )}
-      </div>
+      </div> */}
     </>
   );
 };
