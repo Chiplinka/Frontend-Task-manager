@@ -1,6 +1,6 @@
 "use client";
 import { logOut } from "@/utils/firebase-setup";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { signUp, db, auth } from "@/utils/firebase-setup";
 import { updatedCards } from "@/utils/ticketIF";
@@ -11,6 +11,8 @@ const ListCardsResolved = ({
   setTicketsPending,
   getCurrentTasks,
 }: any) => {
+  const { push } = useRouter();
+
   const modifyDocument = async (id: string) => {
     try {
       const uid = auth.currentUser?.uid;
@@ -48,6 +50,7 @@ const ListCardsResolved = ({
   }
   function handleModify(id: string) {
     console.log("modify", id);
+    push(`/tasks/${id}`);
   }
 
   return (

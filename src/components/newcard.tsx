@@ -52,7 +52,7 @@ const NewCard = ({ getCurrentTasks }: any) => {
   // h-50vh w-50vw border-dotted border-4 border-blue-500 bg-blue-200
   return (
     <>
-      <div className="w-70 h-50 border-dotted border-4 border-blue-500 bg-blue-200">
+      <div className="w-70 h-48 shadow-md rounded-lg p-4 mt-2 border-dotted border-4 border-blue-500 bg-blue-200">
         <button
           // className="mx-2 rounded-md bg-secondary-500 px-10 py-2 hover:bg-primary-500 hover:text-white"
           onClick={handle}

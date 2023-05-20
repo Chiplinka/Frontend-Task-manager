@@ -1,18 +1,38 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { collection, addDoc } from "firebase/firestore";
-import { db, auth } from "@/utils/firebase-setup"; // Assuming you have already set up Firebase in your project
-import formatDate from "@/utils/formatDate";
-import ticketIF from "@/utils/ticketIF";
+import { db, auth } from "@/utils/firebase-setup";
 import checkUserDate from "@/components/checkUserDate";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
-function NewCardPage() {
+function NewCardPage({ params }: any) {
   const { push } = useRouter();
   const [name, setName] = useState("");
   const [deadlineDate, setDeadlineDate] = useState("");
   const [status, setStatus] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    console.log(params);
+    getCurrentCard(params.task);
+  }, []);
+
+  async function getCurrentCard(id: string) {
+    const uid = auth.currentUser?.uid;
+    if (uid) {
+      const docRef = doc(db, `users/${uid}/tickets`, id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        setName(docSnap.data().name);
+        setDeadlineDate(docSnap.data().dueDate);
+        setStatus(docSnap.data().status);
+      } else {
+        console.log("No such document!");
+      }
+    }
+  }
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -21,20 +41,20 @@ function NewCardPage() {
     setError("");
     if (uid) {
       console.log(checkUserDate(deadlineDate), deadlineDate);
+      console.log("Db", db);
 
       if (checkUserDate(deadlineDate) && name) {
-        let ticket: ticketIF = {
+        console.log(db);
+        const itemRef = doc(db, `/users/${uid}/tickets`, params.task);
+        console.log(itemRef);
+
+        await updateDoc(itemRef, {
           name: name,
           status: status,
-          creationDate: "",
           dueDate: deadlineDate,
-        };
-        const currentDate = new Date();
-        ticket.creationDate = formatDate(currentDate);
-        addDoc(collection(db, `users/${uid}/tickets`), {
-          ...ticket,
         });
-        console.log("/tasks/new The card is added: ", ticket);
+
+        console.log("Updated document");
         push("/tasks");
       } else {
         console.log(
@@ -50,7 +70,7 @@ function NewCardPage() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-1/3 bg-white p-8 shadow-md rounded-lg">
-        <h1 className="text-2xl font-bold mb-4">Add New Card</h1>
+        <h1 className="text-2xl font-bold mb-4">Modify Card</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

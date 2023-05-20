@@ -1,10 +1,7 @@
 "use client";
-import { logOut } from "@/utils/firebase-setup";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { signUp, db, auth } from "@/utils/firebase-setup";
+import { useRouter } from "next/navigation";
+import { db, auth } from "@/utils/firebase-setup";
 import { updatedCards } from "@/utils/ticketIF";
-import { collection } from "firebase/firestore";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 const ListCardsPending = ({
@@ -12,6 +9,8 @@ const ListCardsPending = ({
   setTicketsPending,
   getCurrentTasks,
 }: any) => {
+  const { push } = useRouter();
+
   const modifyDocument = async (id: string) => {
     try {
       const uid = auth.currentUser?.uid;
@@ -50,12 +49,10 @@ const ListCardsPending = ({
     console.log("/tasks/ status change");
     modifyDocument(id);
     console.log("/tasks/ status change done");
-
-    getCurrentTasks();
   }
   function handleModify(id: string) {
-    console.log("/tasks/ modify");
-    getCurrentTasks();
+    console.log("/tasks/ modify", `/tasks/task/${id}`);
+    push(`/tasks/${id}`);
   }
 
   return (
