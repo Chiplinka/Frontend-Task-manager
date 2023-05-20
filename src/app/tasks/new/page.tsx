@@ -95,7 +95,7 @@ function NewCardPage() {
           </div>
           <div className="mb-4">
             <label htmlFor="deadlineDate" className="block font-bold mb-1">
-              Deadline Date (Ex. "20/05/23 15:51")
+              Deadline Date (Ex. &quot;20/05/23 15:51&quot;)
             </label>
             <input
               type="text"
