@@ -5,11 +5,7 @@ import { useRouter } from "next/router";
 import { auth } from "@/utils/firebase-setup";
 
 export default function Page() {
-  // const router = useRouter()
 
-  // if (router.basePath === '/') {
-  //   return
-  // }
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -20,7 +16,7 @@ export default function Page() {
       setIsAuthenticated(false);
     }
   }, []);
-  
+
   return (
     <>
       <AccountManagment

@@ -54,14 +54,14 @@ const SignUp = ({ setIsAuthenticated }: any) => {
         ticket.dueDate = formatDate(futureDate);
 
         addDoc(collection(db, `users/${uid}/tickets`), {
-          ticket,
+          ...ticket,
         });
 
         ticket2.creationDate = formatDate(currentDate);
         ticket2.dueDate = formatDate(futureDate);
-        ticket = ticket2;
+        
         addDoc(collection(db, `users/${uid}/tickets`), {
-          ticket,
+          ...ticket2,
         });
       }
     }

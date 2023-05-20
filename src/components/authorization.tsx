@@ -4,7 +4,6 @@ import SignUp from "./signUp";
 import SignIn from "./signIn";
 import Logout from "./logout";
 import { signUp, db, auth } from "@/utils/firebase-setup";
-
 const AccountManagment = ({ isAuthenticated, setIsAuthenticated }: any) => {
   const [isToSignUp, setModeSignUp] = useState(false);
 
@@ -28,12 +27,15 @@ const AccountManagment = ({ isAuthenticated, setIsAuthenticated }: any) => {
                   <SignIn setIsAuthenticated={setIsAuthenticated} />
                 </div>
               )}
-              <button onClick={() => setModeSignUp(true)} className="">
-                Sign up
-              </button>
-              <button onClick={() => setModeSignUp(false)} className="">
-                Sign in
-              </button>
+              {!isToSignUp ? (
+                <button onClick={() => setModeSignUp(true)} className="">
+                  Sign up
+                </button>
+              ) : (
+                <button onClick={() => setModeSignUp(false)} className="">
+                  Sign in
+                </button>
+              )}
             </div>
           )}
         </div>
