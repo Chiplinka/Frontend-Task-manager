@@ -22,7 +22,7 @@ const AccountManagment = () => {
         {isLoggedIn ? (
           <Logout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         ) : (
-          <SignIn isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <SignIn setIsLoggedIn={setIsLoggedIn} />
         )}
       </div>
     </div>

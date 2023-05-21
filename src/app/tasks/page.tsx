@@ -8,12 +8,6 @@ import { query, getDocs } from "firebase/firestore";
 import { updatedCards } from "@/utils/ticketIF";
 import ListCardsPending from "@/components/cardListPending";
 import ListCardsResolved from "@/components/cardListResolved";
-// import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title: "InnoTask Tasks",
-//   description: "Manage your work! View, create, modify, and resolve tasks",
-// };
 
 export default function TaskApp() {
   const [ticketsListPending, setTicketsPending] = useState<updatedCards[]>();
@@ -23,36 +17,7 @@ export default function TaskApp() {
     getCurrentTasks();
   }, []);
 
-  // Reference the collection you want to subscribe to
-
-  // const collectionRef = collection(
-  //   db,
-  //   `users/2ScnVKC9h4TDtOk7cs1qqcDoAeu1/tickets`
-  // );
-  // // Subscribe to the collection
-  // const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
-  //   snapshot.docChanges().forEach((change) => {
-  //     if (change.type === "added") {
-  //       // Handle added documents
-  //       const documentData = change.doc.data();
-  //       console.log("Document added: ", documentData);
-  //       // setTickets([]);
-  //     }
-  //     if (change.type === "modified") {
-  //       // Handle modified documents
-  //       const documentData = change.doc.data();
-  //       console.log("Document modified: ", documentData);
-  //     }
-  //     if (change.type === "removed") {
-  //       // Handle removed documents
-  //       const documentData = change.doc.data();
-  //       console.log("Document removed: ", documentData);
-  //     }
-  //   });
-  // });
-
   async function getCurrentTasks() {
-    // e.preventDefault();
     console.log("Handle");
     const uid = auth.currentUser?.uid;
 
@@ -113,10 +78,9 @@ export default function TaskApp() {
         <div className="grid grid-cols-4 gap-4 gap-y-4  ">
           <ListCardsPending
             ticketsListPending={ticketsListPending}
-            setTicketsPending={setTicketsPending}
             getCurrentTasks={getCurrentTasks}
           />
-          <NewCard getCurrentTasks={getCurrentTasks} />
+          <NewCard />
         </div>
       </div>
 
@@ -128,7 +92,6 @@ export default function TaskApp() {
         <div className="grid grid-cols-4 gap-4 gap-y-4  ">
           <ListCardsResolved
             ticketsListResolved={ticketsListResolved}
-            setTicketsResolved={setTicketsResolved}
             getCurrentTasks={getCurrentTasks}
           />
         </div>

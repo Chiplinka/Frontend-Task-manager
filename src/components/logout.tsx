@@ -3,9 +3,6 @@ import { logOut } from "@/utils/firebase-setup";
 import { useState } from "react";
 
 const Logout = ({ isLoggedIn, setIsLoggedIn }: any) => {
-  //   const router = useRouter()
-  const [error, setError] = useState("");
-
   const handleLogout = async () => {
     if (isLoggedIn) {
       await logOut();

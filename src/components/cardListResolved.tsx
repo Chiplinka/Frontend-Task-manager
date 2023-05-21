@@ -6,11 +6,7 @@ import { signUp, db, auth } from "@/utils/firebase-setup";
 import { updatedCards } from "@/utils/ticketIF";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
-const ListCardsResolved = ({
-  ticketsListResolved,
-  setTicketsPending,
-  getCurrentTasks,
-}: any) => {
+const ListCardsResolved = ({ ticketsListResolved, getCurrentTasks }: any) => {
   const { push } = useRouter();
 
   const modifyDocument = async (id: string) => {
@@ -39,7 +35,9 @@ const ListCardsResolved = ({
     console.log("delete", id);
     const uid = auth.currentUser?.uid;
     if (uid) {
-      await deleteDoc(doc(db, `/users/${uid}/tickets`, id)).then(() => {getCurrentTasks()});
+      await deleteDoc(doc(db, `/users/${uid}/tickets`, id)).then(() => {
+        getCurrentTasks();
+      });
       console.log("deletion done", id);
     }
   }

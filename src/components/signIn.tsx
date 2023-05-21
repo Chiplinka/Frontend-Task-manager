@@ -4,12 +4,7 @@ import { collection, doc, getDocs, setDoc, addDoc } from "firebase/firestore";
 import ticketIF from "../utils/ticketIF";
 import formatDate from "../utils/formatDate";
 
-const SignIn = ({ isLoggedIn, setIsLoggedIn }: any) => {
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
-
+const SignIn = ({ setIsLoggedIn }: any) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

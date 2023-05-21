@@ -6,7 +6,6 @@ import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 const ListCardsPending = ({
   ticketsListPending,
-  setTicketsPending,
   getCurrentTasks,
 }: any) => {
   const { push } = useRouter();
