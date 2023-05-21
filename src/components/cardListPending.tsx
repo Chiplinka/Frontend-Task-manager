@@ -4,10 +4,7 @@ import { db, auth } from "@/utils/firebase-setup";
 import { updatedCards } from "@/utils/ticketIF";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
-const ListCardsPending = ({
-  ticketsListPending,
-  getCurrentTasks,
-}: any) => {
+const ListCardsPending = ({ ticketsListPending, getCurrentTasks }: any) => {
   const { push } = useRouter();
 
   const modifyDocument = async (id: string) => {

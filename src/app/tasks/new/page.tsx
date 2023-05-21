@@ -7,12 +7,6 @@ import formatDate from "@/utils/formatDate";
 import ticketIF from "@/utils/ticketIF";
 import checkUserDate from "@/components/checkUserDate";
 import InputMask from "react-input-mask";
-// import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title: "InnoTask New Task",
-//   description: "Manage your task card! Create a new task",
-// };
 
 function NewCardPage() {
   const { push } = useRouter();
@@ -89,13 +83,6 @@ function NewCardPage() {
                 value={deadlineDate}
                 onChange={(e) => setDeadlineDate(e.target.value)}
               />
-              {/* <input
-              type="text"
-              id="deadlineDate"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              value={deadlineDate}
-              onChange={(e) => setDeadlineDate(e.target.value)}
-            /> */}
             </div>
             <div className="mb-4">
               <label htmlFor="status" className="block font-bold mb-1">
