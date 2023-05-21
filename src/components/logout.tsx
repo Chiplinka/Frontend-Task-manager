@@ -1,8 +1,13 @@
 'use client'
 import { logOut } from '@/utils/firebase-setup'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
-const Logout = ({ isLoggedIn, setIsLoggedIn }: any) => {
+interface Props {
+  isLoggedIn: boolean
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>
+}
+
+const Logout = ({ isLoggedIn, setIsLoggedIn }: Props) => {
   const handleLogout = async () => {
     if (isLoggedIn) {
       await logOut()

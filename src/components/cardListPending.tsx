@@ -4,7 +4,12 @@ import { db, auth } from '@/utils/firebase-setup'
 import { updatedCards } from '@/utils/ticketIF'
 import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
 
-const ListCardsPending = ({ ticketsListPending, getCurrentTasks }: any) => {
+interface Props {
+  ticketsListPending: updatedCards[] | undefined
+  getCurrentTasks: () => {}
+}
+
+const ListCardsPending = ({ ticketsListPending, getCurrentTasks }: Props) => {
   const { push } = useRouter()
 
   const modifyDocument = async (id: string) => {

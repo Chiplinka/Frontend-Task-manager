@@ -6,7 +6,12 @@ import { signUp, db, auth } from '@/utils/firebase-setup'
 import { updatedCards } from '@/utils/ticketIF'
 import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
 
-const ListCardsResolved = ({ ticketsListResolved, getCurrentTasks }: any) => {
+interface Props {
+  ticketsListResolved: updatedCards[] | undefined
+  getCurrentTasks: () => {}
+}
+
+const ListCardsResolved = ({ ticketsListResolved, getCurrentTasks }: Props) => {
   const { push } = useRouter()
 
   const modifyDocument = async (id: string) => {

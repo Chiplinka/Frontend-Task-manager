@@ -6,7 +6,13 @@ import checkUserDate from '@/components/checkUserDate'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import InputMask from 'react-input-mask'
 
-function NewCardPage({ params }: any) {
+type Props = {
+  params: {
+    task: string
+  }
+}
+
+function NewCardPage({ params }: Props) {
   const { push } = useRouter()
   const [name, setName] = useState('')
   const [deadlineDate, setDeadlineDate] = useState('')

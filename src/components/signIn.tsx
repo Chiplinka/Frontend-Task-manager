@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 import { signIn, db, signUp, auth } from '@/utils/firebase-setup'
 import { collection, doc, getDocs, setDoc, addDoc } from 'firebase/firestore'
 import ticketIF from '../utils/ticketIF'
 import formatDate from '../utils/formatDate'
-
-const SignIn = ({ setIsLoggedIn }: any) => {
+type Props = {
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>
+}
+const SignIn = ({ setIsLoggedIn }: Props) => {
   const [isLogin, setIsLogin] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -26,8 +28,11 @@ const SignIn = ({ setIsLoggedIn }: any) => {
   function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault()
     if (isLogin) {
+      console.log('hadle signin', isLogin)
       handleSignIn()
     } else {
+      console.log('hadle signUp', isLogin)
+
       handleSignUp()
     }
   }
@@ -38,9 +43,11 @@ const SignIn = ({ setIsLoggedIn }: any) => {
     const res = await signIn(email, password)
     if (typeof res !== 'boolean' && res?.error) {
       setError(res.error.toString().slice(10))
+      console.log('error')
     } else {
       setError('You are logged in')
       setIsLoggedIn(true)
+      console.log('You are logged in')
     }
   }
 
