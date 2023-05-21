@@ -1,8 +1,7 @@
 import { PhotosType } from "@/utils/photoType";
-import Image from "next/image";
+// import Image from "next/image";
 import imageSergey from "@/../public/Sergey.png";
-import { Helmet } from "react-helmet";
-
+import Head from "next/head";
 type Props = {
   name: string;
   description?: string;
@@ -22,15 +21,17 @@ export default function AboutApp() {
   const Photo = ({ name, image, description }: Props) => {
     return (
       <>
-        {/* <Helmet>
+        {/* <Head>
+          <title>InnoTask</title>
           <meta property="og:title" content="InnoTask" />
           <meta
-            property="og:description"
+            name="description"
             content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
           />
-        </Helmet> */}
+        </Head> */}
+
         <li className="relative mx-8 w-[20%]">
-          <Image src={image} alt={`${image}`} className="rounded-full" />
+          <img src={image} alt={`${image}`} className="rounded-full" />
           <p className="mt-2 text-center text-2xl">{name}</p>
           <p className="mt-1 text-center">{description}</p>
         </li>
