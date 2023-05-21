@@ -52,6 +52,7 @@ function NewCardPage() {
   return (
     <>
       <Helmet>
+      <title>New Task</title>
         <meta property="og:title" content="InnoTask" />
         <meta
           property="og:description"

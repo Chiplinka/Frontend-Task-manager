@@ -21,6 +21,7 @@ export default function Page() {
   return (
     <>
       <Helmet>
+        <title>Welcome to InnoTask</title>
         <meta property="og:title" content="InnoTask" />
         <meta
           property="og:description"
