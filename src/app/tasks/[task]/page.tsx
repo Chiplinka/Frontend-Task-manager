@@ -5,6 +5,7 @@ import { db, auth } from "@/utils/firebase-setup";
 import checkUserDate from "@/components/checkUserDate";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import InputMask from "react-input-mask";
+import { Helmet } from "react-helmet";
 
 function NewCardPage({ params }: any) {
   const { push } = useRouter();
@@ -16,7 +17,7 @@ function NewCardPage({ params }: any) {
   useEffect(() => {
     console.log(params);
     getCurrentCard(params.task);
-  }, []);
+  });
 
   async function getCurrentCard(id: string) {
     const uid = auth.currentUser?.uid;
@@ -69,71 +70,80 @@ function NewCardPage({ params }: any) {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-1/3 bg-white p-8 shadow-md rounded-lg">
-        <h1 className="text-2xl font-bold mb-4">Modify Card</h1>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="name" className="block font-bold mb-1">
-              Name
-            </label>
-            <input
-              required={true}
-              type="text"
-              id="name"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="deadlineDate" className="block font-bold mb-1">
-              Deadline Date (Ex. &quot;20/05/23 15:51&quot;)
-            </label>
-            <InputMask
-              required={true}
-              type="text"
-              id="deadlineDate"
-              mask="99/99/99 99:99"
-              maskChar=" "
-              placeholder="DD/MM/YY HH:MM"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              value={deadlineDate}
-              onChange={(e) => setDeadlineDate(e.target.value)}
-            />
-            {/* <input
+    <>
+      <Helmet>
+        <meta property="og:title" content="InnoTask" />
+        <meta
+          property="og:description"
+          content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
+        />
+      </Helmet>
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-1/3 bg-white p-8 shadow-md rounded-lg">
+          <h1 className="text-2xl font-bold mb-4">Modify Card</h1>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="name" className="block font-bold mb-1">
+                Name
+              </label>
+              <input
+                required={true}
+                type="text"
+                id="name"
+                className="w-full border border-gray-300 rounded px-3 py-2"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="deadlineDate" className="block font-bold mb-1">
+                Deadline Date (Ex. &quot;20/05/23 15:51&quot;)
+              </label>
+              <InputMask
+                required={true}
+                type="text"
+                id="deadlineDate"
+                mask="99/99/99 99:99"
+                maskChar=" "
+                placeholder="DD/MM/YY HH:MM"
+                className="w-full border border-gray-300 rounded px-3 py-2"
+                value={deadlineDate}
+                onChange={(e) => setDeadlineDate(e.target.value)}
+              />
+              {/* <input
               type="text"
               id="deadlineDate"
               className="w-full border border-gray-300 rounded px-3 py-2"
               value={deadlineDate}
               onChange={(e) => setDeadlineDate(e.target.value)}
             /> */}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="status" className="block font-bold mb-1">
-              Status
-            </label>
-            <label htmlFor="status" className="inline-flex items-center">
-              <input
-                type="checkbox"
-                id="status"
-                className="form-checkbox"
-                checked={status}
-                onChange={(e) => setStatus(e.target.checked)}
-              />
-              <span className="ml-2">Complete</span>
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Save
-          </button>
-        </form>
+            </div>
+            <div className="mb-4">
+              <label htmlFor="status" className="block font-bold mb-1">
+                Status
+              </label>
+              <label htmlFor="status" className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  id="status"
+                  className="form-checkbox"
+                  checked={status}
+                  onChange={(e) => setStatus(e.target.checked)}
+                />
+                <span className="ml-2">Complete</span>
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Save
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

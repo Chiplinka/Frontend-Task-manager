@@ -1,15 +1,14 @@
 "use client";
-import { signUp, db, auth } from "@/utils/firebase-setup";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { db, auth } from "@/utils/firebase-setup";
+import { collection } from "firebase/firestore";
 import ticketIF from "@/utils/ticketIF";
 import { useState, useEffect } from "react";
 import NewCard from "@/components/newcard";
-import { ref, onValue } from "firebase/database";
-import { query, where, getDocs, orderBy } from "firebase/firestore";
-import { getFirestore, onSnapshot } from "firebase/firestore";
+import { query, getDocs } from "firebase/firestore";
 import { updatedCards } from "@/utils/ticketIF";
 import ListCardsPending from "@/components/cardListPending";
 import ListCardsResolved from "@/components/cardListResolved";
+import { Helmet } from "react-helmet";
 
 export default function TaskApp() {
   const [ticketsListPending, setTicketsPending] = useState<updatedCards[]>();
@@ -97,6 +96,13 @@ export default function TaskApp() {
 
   return (
     <>
+      <Helmet>
+        <meta property="og:title" content="InnoTask" />
+        <meta
+          property="og:description"
+          content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
+        />
+      </Helmet>
       {/* <form onSubmit={getCurrentTasks}>
         <button type="submit">getCurrentTasks</button>
       </form> */}
