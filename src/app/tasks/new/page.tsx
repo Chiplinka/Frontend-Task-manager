@@ -7,12 +7,12 @@ import formatDate from "@/utils/formatDate";
 import ticketIF from "@/utils/ticketIF";
 import checkUserDate from "@/components/checkUserDate";
 import InputMask from "react-input-mask";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "InnoTask New Task",
-  description: "Manage your task card! Create a new task",
-};
+// export const metadata: Metadata = {
+//   title: "InnoTask New Task",
+//   description: "Manage your task card! Create a new task",
+// };
 
 function NewCardPage() {
   const { push } = useRouter();
