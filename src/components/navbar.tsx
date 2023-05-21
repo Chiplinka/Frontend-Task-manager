@@ -36,14 +36,16 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <span className="text-white text-3xl font-semibold">My App</span>
+              <span className="text-white text-3xl font-semibold">
+                InnoTask
+              </span>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link className={navElCss} href={"/"}>
                   Home
                 </Link>
-                <Link className={navElCss} href={"/tasks"}>
+                <Link className={navElCss} href={"/tasks"}> 
                   Task
                 </Link>
                 <Link className={navElCss} href={"/about"}>

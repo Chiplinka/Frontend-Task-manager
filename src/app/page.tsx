@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { auth } from "@/utils/firebase-setup";
 
 export default function Page() {
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
