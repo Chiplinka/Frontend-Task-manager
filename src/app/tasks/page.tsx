@@ -1,51 +1,51 @@
-"use client";
-import { db, auth } from "@/utils/firebase-setup";
-import { collection } from "firebase/firestore";
-import ticketIF from "@/utils/ticketIF";
-import { useState, useEffect } from "react";
-import NewCard from "@/components/newcard";
-import { query, getDocs } from "firebase/firestore";
-import { updatedCards } from "@/utils/ticketIF";
-import ListCardsPending from "@/components/cardListPending";
-import ListCardsResolved from "@/components/cardListResolved";
+'use client'
+import { db, auth } from '@/utils/firebase-setup'
+import { collection } from 'firebase/firestore'
+import ticketIF from '@/utils/ticketIF'
+import { useState, useEffect } from 'react'
+import NewCard from '@/components/newcard'
+import { query, getDocs } from 'firebase/firestore'
+import { updatedCards } from '@/utils/ticketIF'
+import ListCardsPending from '@/components/cardListPending'
+import ListCardsResolved from '@/components/cardListResolved'
 
 export default function TaskApp() {
-  const [ticketsListPending, setTicketsPending] = useState<updatedCards[]>();
-  const [ticketsListResolved, setTicketsResolved] = useState<updatedCards[]>();
+  const [ticketsListPending, setTicketsPending] = useState<updatedCards[]>()
+  const [ticketsListResolved, setTicketsResolved] = useState<updatedCards[]>()
 
   useEffect(() => {
-    getCurrentTasks();
-  }, []);
+    getCurrentTasks()
+  }, [])
 
   async function getCurrentTasks() {
-    console.log("Handle");
-    const uid = auth.currentUser?.uid;
+    console.log('Handle')
+    const uid = auth.currentUser?.uid
 
     if (uid) {
       // console.log(`You are logged in ${uid}`);
       // console.log("Read data");
 
-      const q = query(collection(db, `users/${uid}/tickets`));
-      const querySnapshot = await getDocs(q);
+      const q = query(collection(db, `users/${uid}/tickets`))
+      const querySnapshot = await getDocs(q)
       // console.log(querySnapshot);
       // let data: ticketIF[] = [];
-      let dataPending: updatedCards[] = [];
-      let dataResolved: updatedCards[] = [];
+      let dataPending: updatedCards[] = []
+      let dataResolved: updatedCards[] = []
       querySnapshot.docs.map((doc) => {
-        console.log("doc.data()", doc.data());
+        console.log('doc.data()', doc.data())
 
         if (doc.data().status) {
           dataResolved.push({
             id: doc.id,
             ...(doc.data() as ticketIF),
-          });
+          })
         } else {
           dataPending.push({
             id: doc.id,
             ...(doc.data() as ticketIF),
-          });
+          })
         }
-      });
+      })
 
       // querySnapshot.forEach((doc) => {
       //   // doc.data() is never undefined for query doc snapshots
@@ -53,14 +53,14 @@ export default function TaskApp() {
       //   data.push((doc.data()["ticket"] as ticketIF, doc.id as string) as listTicket );
       // });
 
-      setTicketsPending(dataPending);
-      setTicketsResolved(dataResolved);
-      console.log("dataPending");
-      console.log(dataPending);
-      console.log("dataResolved");
-      console.log(dataResolved);
+      setTicketsPending(dataPending)
+      setTicketsResolved(dataResolved)
+      console.log('dataPending')
+      console.log(dataPending)
+      console.log('dataResolved')
+      console.log(dataResolved)
     } else {
-      console.log("You are not logged in");
+      console.log('You are not logged in')
     }
   }
 
@@ -97,5 +97,5 @@ export default function TaskApp() {
         </div>
       </div>
     </>
-  );
+  )
 }

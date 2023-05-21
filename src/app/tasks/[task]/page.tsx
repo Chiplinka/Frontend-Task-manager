@@ -1,73 +1,73 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { db, auth } from "@/utils/firebase-setup";
-import checkUserDate from "@/components/checkUserDate";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import InputMask from "react-input-mask";
+'use client'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { db, auth } from '@/utils/firebase-setup'
+import checkUserDate from '@/components/checkUserDate'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import InputMask from 'react-input-mask'
 
 function NewCardPage({ params }: any) {
-  const { push } = useRouter();
-  const [name, setName] = useState("");
-  const [deadlineDate, setDeadlineDate] = useState("");
-  const [status, setStatus] = useState(false);
-  const [error, setError] = useState("");
+  const { push } = useRouter()
+  const [name, setName] = useState('')
+  const [deadlineDate, setDeadlineDate] = useState('')
+  const [status, setStatus] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    console.log(params);
-    getCurrentCard(params.task);
-  }, []);
+    console.log(params)
+    getCurrentCard(params.task)
+  }, [])
 
   async function getCurrentCard(id: string) {
-    const uid = auth.currentUser?.uid;
+    const uid = auth.currentUser?.uid
     if (uid) {
-      const docRef = doc(db, `users/${uid}/tickets`, id);
-      const docSnap = await getDoc(docRef);
+      const docRef = doc(db, `users/${uid}/tickets`, id)
+      const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        setName(docSnap.data().name);
-        setDeadlineDate(docSnap.data().dueDate);
-        setStatus(docSnap.data().status);
+        console.log('Document data:', docSnap.data())
+        setName(docSnap.data().name)
+        setDeadlineDate(docSnap.data().dueDate)
+        setStatus(docSnap.data().status)
       } else {
-        console.log("No such document!");
+        console.log('No such document!')
       }
     }
   }
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const uid = auth.currentUser?.uid;
-    console.log(uid);
-    setError("");
+    const uid = auth.currentUser?.uid
+    console.log(uid)
+    setError('')
     if (uid) {
-      console.log(checkUserDate(deadlineDate), deadlineDate);
-      console.log("Db", db);
+      console.log(checkUserDate(deadlineDate), deadlineDate)
+      console.log('Db', db)
 
       if (checkUserDate(deadlineDate) && name) {
-        console.log(db);
-        const itemRef = doc(db, `/users/${uid}/tickets`, params.task);
-        console.log(itemRef);
+        console.log(db)
+        const itemRef = doc(db, `/users/${uid}/tickets`, params.task)
+        console.log(itemRef)
 
         await updateDoc(itemRef, {
           name: name,
           status: status,
           dueDate: deadlineDate,
-        });
+        })
 
-        console.log("Updated document");
-        push("/tasks");
+        console.log('Updated document')
+        push('/tasks')
       } else {
         console.log(
-          "/tasks/new The string dont match the pattern/Name cannot be empty"
-        );
-        setError("Write valid date");
+          '/tasks/new The string dont match the pattern/Name cannot be empty'
+        )
+        setError('Write valid date')
       }
     } else {
-      setError("You are not logged in");
+      setError('You are not logged in')
     }
-  };
+  }
 
   return (
     <>
@@ -137,7 +137,7 @@ function NewCardPage({ params }: any) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default NewCardPage;
+export default NewCardPage

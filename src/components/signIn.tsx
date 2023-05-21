@@ -1,92 +1,92 @@
-import { useState } from "react";
-import { signIn, db, signUp, auth } from "@/utils/firebase-setup";
-import { collection, doc, getDocs, setDoc, addDoc } from "firebase/firestore";
-import ticketIF from "../utils/ticketIF";
-import formatDate from "../utils/formatDate";
+import { useState } from 'react'
+import { signIn, db, signUp, auth } from '@/utils/firebase-setup'
+import { collection, doc, getDocs, setDoc, addDoc } from 'firebase/firestore'
+import ticketIF from '../utils/ticketIF'
+import formatDate from '../utils/formatDate'
 
 const SignIn = ({ setIsLoggedIn }: any) => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [isLogin, setIsLogin] = useState(true)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   let ticket: ticketIF = {
-    name: "Do frontend project",
+    name: 'Do frontend project',
     status: false,
-    creationDate: "",
-    dueDate: "",
-  };
+    creationDate: '',
+    dueDate: '',
+  }
   let ticket2: ticketIF = {
-    name: "Wash the dishes",
+    name: 'Wash the dishes',
     status: false,
-    creationDate: "",
-    dueDate: "",
-  };
+    creationDate: '',
+    dueDate: '',
+  }
 
   function handleSubmit(e: { preventDefault: () => void }) {
-    e.preventDefault();
+    e.preventDefault()
     if (isLogin) {
-      handleSignIn();
+      handleSignIn()
     } else {
-      handleSignUp();
+      handleSignUp()
     }
   }
 
   const handleSignIn = async () => {
-    setEmail("");
-    setPassword("");
-    const res = await signIn(email, password);
-    if (typeof res !== "boolean" && res?.error) {
-      setError(res.error.toString().slice(10));
+    setEmail('')
+    setPassword('')
+    const res = await signIn(email, password)
+    if (typeof res !== 'boolean' && res?.error) {
+      setError(res.error.toString().slice(10))
     } else {
-      setError("You are logged in");
-      setIsLoggedIn(true);
+      setError('You are logged in')
+      setIsLoggedIn(true)
     }
-  };
+  }
 
   async function handleSignUp() {
-    const res = await signUp(email, password);
-    console.log(res);
-    if (typeof res !== "boolean" && res?.error) {
-      setError(res.error.toString().slice(10));
-      setEmail("");
-      setPassword("");
+    const res = await signUp(email, password)
+    console.log(res)
+    if (typeof res !== 'boolean' && res?.error) {
+      setError(res.error.toString().slice(10))
+      setEmail('')
+      setPassword('')
     } else {
-      const uid = auth.currentUser?.uid;
+      const uid = auth.currentUser?.uid
       if (uid) {
-        setIsLoggedIn(true);
-        await setDoc(doc(db, "users", uid), {
+        setIsLoggedIn(true)
+        await setDoc(doc(db, 'users', uid), {
           email: email,
           password: password,
-        });
+        })
 
-        console.log(uid);
-        setError("You are sign up");
-        const currentDate = new Date();
-        const futureDate = new Date();
-        futureDate.setDate(currentDate.getDate() + 2);
+        console.log(uid)
+        setError('You are sign up')
+        const currentDate = new Date()
+        const futureDate = new Date()
+        futureDate.setDate(currentDate.getDate() + 2)
 
-        ticket.creationDate = formatDate(currentDate);
-        ticket.dueDate = formatDate(futureDate);
+        ticket.creationDate = formatDate(currentDate)
+        ticket.dueDate = formatDate(futureDate)
 
         addDoc(collection(db, `users/${uid}/tickets`), {
           ...ticket,
-        });
+        })
 
-        ticket2.creationDate = formatDate(currentDate);
-        ticket2.dueDate = formatDate(futureDate);
+        ticket2.creationDate = formatDate(currentDate)
+        ticket2.dueDate = formatDate(futureDate)
 
         addDoc(collection(db, `users/${uid}/tickets`), {
           ...ticket2,
-        });
+        })
       }
     }
   }
 
   function handleChangeMode(e: { preventDefault: () => void }) {
-    e.preventDefault();
-    setIsLogin(!isLogin);
-    setError("");
+    e.preventDefault()
+    setIsLogin(!isLogin)
+    setError('')
   }
 
   return (
@@ -126,20 +126,20 @@ const SignIn = ({ setIsLoggedIn }: any) => {
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
         >
-          {isLogin ? "Log in" : "Sign up"}
+          {isLogin ? 'Log in' : 'Sign up'}
         </button>
       </form>
       <p className="mt-4 text-center">
-        {isLogin ? "Don't have an account? " : "Already have an account? "}
+        {isLogin ? "Don't have an account? " : 'Already have an account? '}
         <button
           className="text-blue-500 hover:underline"
           onClick={handleChangeMode}
         >
-          {isLogin ? "Sign up" : "Log in"}
+          {isLogin ? 'Sign up' : 'Log in'}
         </button>
       </p>
     </>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

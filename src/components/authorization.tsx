@@ -1,20 +1,20 @@
-"use client";
-import { useState, useEffect } from "react";
-import SignIn from "./signIn";
-import Logout from "./logout";
-import { auth } from "@/utils/firebase-setup";
+'use client'
+import { useState, useEffect } from 'react'
+import SignIn from './signIn'
+import Logout from './logout'
+import { auth } from '@/utils/firebase-setup'
 
 const AccountManagment = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    const uid = auth.currentUser?.uid;
+    const uid = auth.currentUser?.uid
     if (uid) {
-      setIsLoggedIn(true);
+      setIsLoggedIn(true)
     } else {
-      setIsLoggedIn(false);
+      setIsLoggedIn(false)
     }
-  }, []);
+  }, [])
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -26,7 +26,7 @@ const AccountManagment = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AccountManagment;
+export default AccountManagment

@@ -5,7 +5,7 @@ const Footer = () => {
         <h1 className="font-bold underline">Footer</h1>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

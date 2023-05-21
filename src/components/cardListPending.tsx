@@ -1,54 +1,54 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { db, auth } from "@/utils/firebase-setup";
-import { updatedCards } from "@/utils/ticketIF";
-import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+'use client'
+import { useRouter } from 'next/navigation'
+import { db, auth } from '@/utils/firebase-setup'
+import { updatedCards } from '@/utils/ticketIF'
+import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
 
 const ListCardsPending = ({ ticketsListPending, getCurrentTasks }: any) => {
-  const { push } = useRouter();
+  const { push } = useRouter()
 
   const modifyDocument = async (id: string) => {
     try {
-      const uid = auth.currentUser?.uid;
+      const uid = auth.currentUser?.uid
       if (uid) {
-        console.log("modifyDocument");
+        console.log('modifyDocument')
         // const collectionRef = collection(db, `/users/${uid}/tickets`);
 
-        const itemRef = doc(db, `/users/${uid}/tickets`, id);
-        console.log(itemRef);
+        const itemRef = doc(db, `/users/${uid}/tickets`, id)
+        console.log(itemRef)
         await updateDoc(itemRef, {
           status: true,
         }).then(() => {
-          getCurrentTasks();
-        });
-        console.log("Updated document");
+          getCurrentTasks()
+        })
+        console.log('Updated document')
       } else {
-        console.log("No matching documents found!");
+        console.log('No matching documents found!')
       }
     } catch (error) {
-      console.error("Error updating document:", error);
+      console.error('Error updating document:', error)
     }
-  };
+  }
 
   async function handleDelete(id: string) {
-    console.log("delete", id);
-    const uid = auth.currentUser?.uid;
+    console.log('delete', id)
+    const uid = auth.currentUser?.uid
     if (uid) {
       await deleteDoc(doc(db, `/users/${uid}/tickets`, id)).then(() => {
-        getCurrentTasks();
-      });
-      console.log("deletion done", id);
+        getCurrentTasks()
+      })
+      console.log('deletion done', id)
     }
   }
 
   function handleStatusChange(id: string) {
-    console.log("/tasks/ status change");
-    modifyDocument(id);
-    console.log("/tasks/ status change done");
+    console.log('/tasks/ status change')
+    modifyDocument(id)
+    console.log('/tasks/ status change done')
   }
   function handleModify(id: string) {
-    console.log("/tasks/ modify", `/tasks/task/${id}`);
-    push(`/tasks/${id}`);
+    console.log('/tasks/ modify', `/tasks/task/${id}`)
+    push(`/tasks/${id}`)
   }
 
   return (
@@ -72,7 +72,7 @@ const ListCardsPending = ({ ticketsListPending, getCurrentTasks }: any) => {
               Deadline Date: {ticket.dueDate}
             </p>
             <p className="text-gray-600 text-sm">
-              Status: {ticket.status ? "Completed" : "Pending"}
+              Status: {ticket.status ? 'Completed' : 'Pending'}
             </p>
           </div>
           <div className="flex justify-between">
@@ -92,7 +92,7 @@ const ListCardsPending = ({ ticketsListPending, getCurrentTasks }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default ListCardsPending;
+export default ListCardsPending

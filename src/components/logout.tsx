@@ -1,17 +1,17 @@
-"use client";
-import { logOut } from "@/utils/firebase-setup";
-import { useState } from "react";
+'use client'
+import { logOut } from '@/utils/firebase-setup'
+import { useState } from 'react'
 
 const Logout = ({ isLoggedIn, setIsLoggedIn }: any) => {
   const handleLogout = async () => {
     if (isLoggedIn) {
-      await logOut();
-      setIsLoggedIn(false);
-      console.log("logged out");
+      await logOut()
+      setIsLoggedIn(false)
+      console.log('logged out')
     } else {
-      console.log("You are not logged");
+      console.log('You are not logged')
     }
-  };
+  }
 
   return (
     <>
@@ -23,7 +23,7 @@ const Logout = ({ isLoggedIn, setIsLoggedIn }: any) => {
         Log out
       </button>
     </>
-  );
-};
+  )
+}
 
-export default Logout;
+export default Logout

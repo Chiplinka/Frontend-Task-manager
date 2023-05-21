@@ -1,27 +1,27 @@
-import { PhotosType } from "@/utils/photoType";
-import imageSergey from "@/../public/Sergey.png";
-import { Metadata } from "next";
+import { PhotosType } from '@/utils/photoType'
+import imageSergey from '@/../public/Sergey.png'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "InnoTask About",
-  description: "Learn about the team who worked on this project",
-};
+  title: 'InnoTask About',
+  description: 'Learn about the team who worked on this project',
+}
 
 type Props = {
-  name: string;
-  description?: string;
-  image: string;
-};
+  name: string
+  description?: string
+  image: string
+}
 
 export default function AboutApp() {
   const photos: Array<PhotosType> = [
     {
-      name: "Sergey Pasynkov",
+      name: 'Sergey Pasynkov',
       description:
-        "Frontend developer. Sergey was in charge of designing the website and diligently worked on enhancing its structure for optimal functionality. He also conducted rigorous testing to ensure that everything was working seamlessly, thus playing a crucial role in the success of the website.",
+        'Frontend developer. Sergey was in charge of designing the website and diligently worked on enhancing its structure for optimal functionality. He also conducted rigorous testing to ensure that everything was working seamlessly, thus playing a crucial role in the success of the website.',
       image: imageSergey.src,
     },
-  ];
+  ]
 
   const Photo = ({ name, image, description }: Props) => {
     return (
@@ -32,8 +32,8 @@ export default function AboutApp() {
           <p className="mt-1 text-center">{description}</p>
         </li>
       </>
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -50,5 +50,5 @@ export default function AboutApp() {
         </ul>
       </div>
     </>
-  );
+  )
 }
