@@ -1,11 +1,11 @@
 import { PhotosType } from '@/utils/photoType'
 import imageSergey from '@/../public/Sergey.png'
-import { Metadata } from 'next'
+// import { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'InnoTask About',
-  description: 'Learn about the team who worked on this project',
-}
+// export const metadata: Metadata = {
+//   title: 'InnoTask About',
+//   description: 'Learn about the team who worked on this project',
+// }
 
 type Props = {
   name: string

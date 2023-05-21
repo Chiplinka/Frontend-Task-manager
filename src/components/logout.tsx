@@ -1,4 +1,3 @@
-'use client'
 import { logOut } from '@/utils/firebase-setup'
 import { useState } from 'react'
 

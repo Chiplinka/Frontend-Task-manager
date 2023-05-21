@@ -1,4 +1,3 @@
-'use client'
 import { useState, useEffect } from 'react'
 import SignIn from './signIn'
 import Logout from './logout'

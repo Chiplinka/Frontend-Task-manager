@@ -1,4 +1,3 @@
-'use client'
 import { logOut } from '@/utils/firebase-setup'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'

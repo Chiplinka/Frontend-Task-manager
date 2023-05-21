@@ -1,4 +1,3 @@
-'use client'
 import { db, auth } from '@/utils/firebase-setup'
 import { collection } from 'firebase/firestore'
 import ticketIF from '@/utils/ticketIF'

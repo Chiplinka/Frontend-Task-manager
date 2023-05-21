@@ -1,4 +1,3 @@
-'use client'
 import { useRouter } from 'next/navigation'
 import { auth } from '@/utils/firebase-setup'
 import ticketIF from '../utils/ticketIF'

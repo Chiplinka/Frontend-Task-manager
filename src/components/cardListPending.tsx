@@ -1,4 +1,3 @@
-'use client'
 import { useRouter } from 'next/navigation'
 import { db, auth } from '@/utils/firebase-setup'
 import { updatedCards } from '@/utils/ticketIF'
