@@ -22,12 +22,10 @@ export default function AboutApp() {
     return (
       <>
         <Head>
-          <title>InnoTask</title>
-          <meta property="og:title" content="InnoTask" />
-          <meta
-            name="description"
-            content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
-          />
+          <title>About us</title>
+          <meta key="description" name="description" content="Our team" />
+          <meta property="og:title" content="About us" />
+          <meta property="og:description" content="Our team" />
         </Head>
 
         <li className="relative mx-8 w-[20%]">
