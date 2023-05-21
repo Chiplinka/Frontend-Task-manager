@@ -20,11 +20,17 @@ export default function Page() {
 
   return (
     <>
-      <Helmet>
+      <Head>
+        <title>InnoTask</title>
+        <meta key="description" name="description" content="InnoTask" />
+        <meta property="og:title" content="InnoTask" />
+        <meta property="og:description" content="InnoTask" />
+      </Head>
+      {/* <Helmet>
         <title>InnoTask</title>
         <meta property="og:title" content="InnoTask" />
         <meta property="og:description" content="Your Page Description" />
-      </Helmet>
+      </Helmet> */}
       <AccountManagment
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
