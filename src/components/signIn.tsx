@@ -130,7 +130,7 @@ const SignIn = ({ setIsLoggedIn }: any) => {
         </button>
       </form>
       <p className="mt-4 text-center">
-        {isLogin ? "Don't have an account?" : "Already have an account?"}
+        {isLogin ? "Don't have an account? " : "Already have an account? "}
         <button
           className="text-blue-500 hover:underline"
           onClick={handleChangeMode}
