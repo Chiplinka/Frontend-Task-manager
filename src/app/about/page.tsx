@@ -21,14 +21,14 @@ export default function AboutApp() {
   const Photo = ({ name, image, description }: Props) => {
     return (
       <>
-        {/* <Head>
+        <Head>
           <title>InnoTask</title>
           <meta property="og:title" content="InnoTask" />
           <meta
             name="description"
             content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
           />
-        </Head> */}
+        </Head>
 
         <li className="relative mx-8 w-[20%]">
           <img src={image} alt={`${image}`} className="rounded-full" />
