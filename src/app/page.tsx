@@ -19,19 +19,6 @@ export default function Page() {
 
   return (
     <>
-      <Head>
-        <title>Welcome InnoTask</title>
-        <meta
-          key="description"
-          name="description"
-          content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
-        />
-        <meta property="og:title" content="Welcome InnoTask" />
-        <meta
-          property="og:description"
-          content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
-        />
-      </Head>
       <AccountManagment
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
