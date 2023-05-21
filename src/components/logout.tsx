@@ -1,35 +1,26 @@
 "use client";
 import { logOut } from "@/utils/firebase-setup";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { signUp, db, auth } from "@/utils/firebase-setup";
+import { useState } from "react";
 
-const Logout = ({ isAuthenticated, setIsAuthenticated }: any) => {
+const Logout = ({ isLoggedIn, setIsLoggedIn }: any) => {
   //   const router = useRouter()
   const [error, setError] = useState("");
-  const [buttonLabel, setButtonLabel] = useState("Log out");
 
   const handleLogout = async () => {
-    // setError("You are logged out");
-    setButtonLabel("Log in");
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       await logOut();
-      setIsAuthenticated(false);
+      setIsLoggedIn(false);
+      console.log("logged out");
     } else {
-      //redirect to main page
+      console.log("You are not logged");
     }
   };
 
   return (
     <>
-      {/* <button
-        classNameName="mx-2 rounded-md bg-secondary-500 px-10 py-2 hover:bg-primary-500 hover:text-white"
-        onClick={handleLogout}
-      >
-        {isAuthenticated ? "Log Out" : "Log In"}
-      </button> */}
+      <h2 className="text-2xl font-bold mb-4">Welcome, User!</h2>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
         onClick={handleLogout}
       >
         Log out
