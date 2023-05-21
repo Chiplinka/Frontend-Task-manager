@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { db, auth } from "@/utils/firebase-setup";
 import checkUserDate from "@/components/checkUserDate";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import InputMask from "react-input-mask";
 
 function NewCardPage({ params }: any) {
   const { push } = useRouter();
@@ -60,7 +61,7 @@ function NewCardPage({ params }: any) {
         console.log(
           "/tasks/new The string dont match the pattern/Name cannot be empty"
         );
-        setError("The string dont match the pattern/Name cannot be empty");
+        setError("Write valid date");
       }
     } else {
       setError("You are not logged in");
@@ -78,6 +79,7 @@ function NewCardPage({ params }: any) {
               Name
             </label>
             <input
+              required={true}
               type="text"
               id="name"
               className="w-full border border-gray-300 rounded px-3 py-2"
@@ -89,13 +91,24 @@ function NewCardPage({ params }: any) {
             <label htmlFor="deadlineDate" className="block font-bold mb-1">
               Deadline Date (Ex. &quot;20/05/23 15:51&quot;)
             </label>
-            <input
+            <InputMask
+              required={true}
+              type="text"
+              id="deadlineDate"
+              mask="99/99/99 99:99"
+              maskChar=" "
+              placeholder="DD/MM/YY HH:MM"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              value={deadlineDate}
+              onChange={(e) => setDeadlineDate(e.target.value)}
+            />
+            {/* <input
               type="text"
               id="deadlineDate"
               className="w-full border border-gray-300 rounded px-3 py-2"
               value={deadlineDate}
               onChange={(e) => setDeadlineDate(e.target.value)}
-            />
+            /> */}
           </div>
           <div className="mb-4">
             <label htmlFor="status" className="block font-bold mb-1">
