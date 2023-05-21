@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Head from "next/head";
+import { Helmet } from "react-helmet";
 
 export default function RootLayout({
   children,
@@ -11,23 +12,16 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
+        <Helmet>
+          <meta property="og:title" content="InnoTask" />
+          <meta
+            property="og:description"
+            content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
+          />
+        </Helmet>
         <body>
-          <Head>
-            <title>Welcome InnoTask</title>
-            <meta
-              key="description"
-              name="description"
-              content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
-            />
-            <meta property="og:title" content="Welcome InnoTask" />
-            <meta
-              property="og:description"
-              content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
-            />
-          </Head>
           <Navbar></Navbar>
           {children}
-          {/* <Footer></Footer> */}
         </body>
       </html>
     </>
