@@ -110,13 +110,6 @@ function NewCardPage({ params }: Props) {
                 value={deadlineDate}
                 onChange={(e) => setDeadlineDate(e.target.value)}
               />
-              {/* <input
-              type="text"
-              id="deadlineDate"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              value={deadlineDate}
-              onChange={(e) => setDeadlineDate(e.target.value)}
-            /> */}
             </div>
             <div className="mb-4">
               <label htmlFor="status" className="block font-bold mb-1">

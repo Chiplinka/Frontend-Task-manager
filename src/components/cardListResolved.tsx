@@ -19,7 +19,6 @@ const ListCardsResolved = ({ ticketsListResolved, getCurrentTasks }: Props) => {
       const uid = auth.currentUser?.uid
       if (uid) {
         console.log('modifyDocument')
-        // const collectionRef = collection(db, `/users/${uid}/tickets`);
 
         const itemRef = doc(db, `/users/${uid}/tickets`, id)
         console.log(itemRef)

@@ -22,13 +22,9 @@ export default function TaskApp() {
     const uid = auth.currentUser?.uid
 
     if (uid) {
-      // console.log(`You are logged in ${uid}`);
-      // console.log("Read data");
-
       const q = query(collection(db, `users/${uid}/tickets`))
       const querySnapshot = await getDocs(q)
-      // console.log(querySnapshot);
-      // let data: ticketIF[] = [];
+
       let dataPending: updatedCards[] = []
       let dataResolved: updatedCards[] = []
       querySnapshot.docs.map((doc) => {
@@ -47,12 +43,6 @@ export default function TaskApp() {
         }
       })
 
-      // querySnapshot.forEach((doc) => {
-      //   // doc.data() is never undefined for query doc snapshots
-      //   // console.log(doc.id, " => ", doc.data());
-      //   data.push((doc.data()["ticket"] as ticketIF, doc.id as string) as listTicket );
-      // });
-
       setTicketsPending(dataPending)
       setTicketsResolved(dataResolved)
       console.log('dataPending')
@@ -66,9 +56,6 @@ export default function TaskApp() {
 
   return (
     <>
-      {/* <form onSubmit={getCurrentTasks}>
-        <button type="submit">getCurrentTasks</button>
-      </form> */}
       <div className="mb-8 mt-8">
         <h2 className="text-2xl font-bold mb-4 text-center">Pending tasks</h2>
         <div className="border-b-2 border-gray-300"></div>
