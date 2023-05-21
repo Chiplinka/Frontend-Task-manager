@@ -26,11 +26,6 @@ export default function Page() {
         <meta property="og:title" content="InnoTask" />
         <meta property="og:description" content="InnoTask" />
       </Head>
-      {/* <Helmet>
-        <title>InnoTask</title>
-        <meta property="og:title" content="InnoTask" />
-        <meta property="og:description" content="Your Page Description" />
-      </Helmet> */}
       <AccountManagment
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
