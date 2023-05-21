@@ -6,6 +6,12 @@ import checkUserDate from "@/components/checkUserDate";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import InputMask from "react-input-mask";
 import { Helmet } from "react-helmet";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "InnoTask Task",
+  description: "Manage your task card! Modify existing task",
+};
 
 function NewCardPage({ params }: any) {
   const { push } = useRouter();

@@ -1,7 +1,12 @@
 import { PhotosType } from "@/utils/photoType";
-// import Image from "next/image";
 import imageSergey from "@/../public/Sergey.png";
-import Head from "next/head";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "InnoTask About",
+  description: "Learn about the team who worked on this project",
+};
+
 type Props = {
   name: string;
   description?: string;
@@ -21,13 +26,6 @@ export default function AboutApp() {
   const Photo = ({ name, image, description }: Props) => {
     return (
       <>
-        <Head>
-          <title>About us</title>
-          <meta key="description" name="description" content="Our team" />
-          <meta property="og:title" content="About us" />
-          <meta property="og:description" content="Our team" />
-        </Head>
-
         <li className="relative mx-8 w-[20%]">
           <img src={image} alt={`${image}`} className="rounded-full" />
           <p className="mt-2 text-center text-2xl">{name}</p>

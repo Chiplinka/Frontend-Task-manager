@@ -9,6 +9,12 @@ import { updatedCards } from "@/utils/ticketIF";
 import ListCardsPending from "@/components/cardListPending";
 import ListCardsResolved from "@/components/cardListResolved";
 import { Helmet } from "react-helmet";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "InnoTask Tasks",
+  description: "Manage your work! View, create, modify, and resolve tasks",
+};
 
 export default function TaskApp() {
   const [ticketsListPending, setTicketsPending] = useState<updatedCards[]>();

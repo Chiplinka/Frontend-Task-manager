@@ -8,6 +8,12 @@ import ticketIF from "@/utils/ticketIF";
 import checkUserDate from "@/components/checkUserDate";
 import InputMask from "react-input-mask";
 import { Helmet } from "react-helmet";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "InnoTask New Task",
+  description: "Manage your task card! Create a new task",
+};
 
 function NewCardPage() {
   const { push } = useRouter();
@@ -52,7 +58,7 @@ function NewCardPage() {
   return (
     <>
       <Helmet>
-      <title>New Task</title>
+        <title>NewTask</title>
         <meta property="og:title" content="InnoTask" />
         <meta
           property="og:description"
