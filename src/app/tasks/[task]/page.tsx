@@ -5,7 +5,6 @@ import { db, auth } from "@/utils/firebase-setup";
 import checkUserDate from "@/components/checkUserDate";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import InputMask from "react-input-mask";
-import { Helmet } from "react-helmet";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -77,15 +76,6 @@ function NewCardPage({ params }: any) {
 
   return (
     <>
-      <Helmet>
-        <title>Task</title>
-
-        <meta property="og:title" content="InnoTask" />
-        <meta
-          property="og:description"
-          content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
-        />
-      </Helmet>
       <div className="flex justify-center items-center h-screen">
         <div className="w-1/3 bg-white p-8 shadow-md rounded-lg">
           <h1 className="text-2xl font-bold mb-4">Modify Card</h1>

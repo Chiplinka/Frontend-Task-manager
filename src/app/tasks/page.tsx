@@ -8,7 +8,6 @@ import { query, getDocs } from "firebase/firestore";
 import { updatedCards } from "@/utils/ticketIF";
 import ListCardsPending from "@/components/cardListPending";
 import ListCardsResolved from "@/components/cardListResolved";
-import { Helmet } from "react-helmet";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -102,14 +101,6 @@ export default function TaskApp() {
 
   return (
     <>
-      <Helmet>
-        <title>Tasks</title>
-        <meta property="og:title" content="InnoTask" />
-        <meta
-          property="og:description"
-          content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
-        />
-      </Helmet>
       {/* <form onSubmit={getCurrentTasks}>
         <button type="submit">getCurrentTasks</button>
       </form> */}

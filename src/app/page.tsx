@@ -20,12 +20,6 @@ export default function Page() {
 
   return (
     <>
-      <Head>
-        <title>InnoTask</title>
-        <meta key="description" name="description" content="InnoTask" />
-        <meta property="og:title" content="InnoTask" />
-        <meta property="og:description" content="InnoTask" />
-      </Head>
       <AccountManagment
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
