@@ -20,13 +20,13 @@ export default function Page() {
 
   return (
     <>
-      {/* <Helmet>
+      <Helmet>
         <meta property="og:title" content="InnoTask" />
         <meta
           property="og:description"
           content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
         />
-      </Helmet> */}
+      </Helmet>
       <AccountManagment
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}

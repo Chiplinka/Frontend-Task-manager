@@ -10,14 +10,14 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
-        <Head>
+        {/* <Head>
           <title>InnoTask</title>
           <meta property="og:title" content="InnoTask" />
           <meta
             name="description"
             content="Manage your tasks efficiently with our powerful task management platform. Stay organized, collaborate with your team, and increase productivity. Try it now!"
           />
-        </Head>
+        </Head> */}
         <body>
           <Navbar></Navbar>
           {children}
