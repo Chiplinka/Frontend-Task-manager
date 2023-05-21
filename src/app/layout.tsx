@@ -2,7 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Head from "next/head";
-import { Helmet } from "react-helmet";
+import Helmet from "react-helmet";
 
 export default function RootLayout({
   children,
